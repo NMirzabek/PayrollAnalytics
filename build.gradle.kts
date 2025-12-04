@@ -1,6 +1,9 @@
 plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
+    kotlin("plugin.allopen") version "1.9.25"
+    kotlin("plugin.noarg") version "1.9.25"
+
     id("org.springframework.boot") version "3.5.8"
     id("io.spring.dependency-management") version "1.1.7"
 }
@@ -37,6 +40,21 @@ kotlin {
         freeCompilerArgs.addAll("-Xjsr305=strict")
     }
 }
+
+allOpen {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
+    annotation("org.springframework.stereotype.Service")
+    annotation("org.springframework.stereotype.Component")
+    annotation("org.springframework.stereotype.Controller")
+}
+
+noArg {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+}
+
 
 tasks.withType<Test> {
     useJUnitPlatform()

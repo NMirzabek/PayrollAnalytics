@@ -18,7 +18,7 @@ class Employee(
     @Column(name = "last_name", nullable = false)
     var lastName: String,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false) // pinfl unique bolmasligi kerak
     var pinfl: String,
 
     @Column(name = "hire_date", nullable = false)
@@ -27,16 +27,17 @@ class Employee(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
     var organization: Organization
-) {
-    constructor() : this(
-        id = null,
-        firstName = "",
-        lastName = "",
-        pinfl = "",
-        hireDate = LocalDate.now(),
-        organization = Organization()
-    )
-}
+)
+//{
+//    constructor() : this(
+//        id = null,
+//        firstName = "",
+//        lastName = "",
+//        pinfl = "",
+//        hireDate = LocalDate.now(),
+//        organization = Organization()
+//    )
+//}
 
 @Entity
 @Table(name = "organization")
@@ -56,14 +57,15 @@ class Organization(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent")
     var parent: Organization? = null
-) {
-    constructor() : this(
-        id = null,
-        name = "",
-        region = Region(),
-        parent = null
-    )
-}
+)
+//{
+//    constructor() : this(
+//        id = null,
+//        name = "",
+//        region = Region(),
+//        parent = null
+//    )
+//}
 
 @Entity
 @Table(name = "region")
@@ -75,12 +77,13 @@ class Region(
 
     @Column(nullable = false)
     var name: String
-) {
-    constructor() : this(
-        id = null,
-        name = ""
-    )
-}
+)
+//{
+//    constructor() : this(
+//        id = null,
+//        name = ""
+//    )
+//}
 
 @Entity
 @Table(name = "calculation_table")
@@ -110,14 +113,15 @@ class CalculationTable(
     @Enumerated(EnumType.STRING)
     @Column(name = "calculation_type", nullable = false)
     var calculationType: CalculationType
-) {
-    constructor() : this(
-        id = null,
-        employee = Employee(),
-        amount = BigDecimal.ZERO,
-        rate = BigDecimal.ONE,
-        date = LocalDate.now(),
-        organization = Organization(),
-        calculationType = CalculationType.SALARY
-    )
-}
+)
+//{
+//    constructor() : this(
+//        id = null,
+//        employee = Employee(),
+//        amount = BigDecimal.ZERO,
+//        rate = BigDecimal.ONE,
+//        date = LocalDate.now(),
+//        organization = Organization(),
+//        calculationType = CalculationType.SALARY
+//    )
+//}

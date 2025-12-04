@@ -78,7 +78,7 @@ data class OrganizationAverageSalaryDto(
     val organizationName: String,
     val employeeId: Long,
     val employeeFullName: String,
-    val averageSalary: BigDecimal
+    val averageSalary: Double
 )
 
 data class SalaryAndVacationDto(

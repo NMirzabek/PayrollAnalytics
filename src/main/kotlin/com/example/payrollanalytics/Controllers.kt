@@ -4,6 +4,7 @@ package com.example.payrollanalytics
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.*
+import java.math.BigDecimal
 
 @RestController
 @RequestMapping("/api/employees")
@@ -71,10 +72,13 @@ class CalculationController(
 class StatisticsController(
     private val statisticsService: StatisticsService
 ) {
-    @GetMapping("/over-rate")
-    @Operation(summary = "Employees whose total rate > 1 in given month")
-    fun getOverRate(@RequestParam month: String): List<OverRateEmployeeDto> =
-        statisticsService.getEmployeesWithRateGreaterThanOne(month)
+    @GetMapping("/stats/over-rate")
+    fun overRate(
+        @RequestParam month: String,
+        @RequestParam minRate: BigDecimal
+    ): List<OverRateEmployeeDto> =
+        statisticsService.getEmployeesWithRateGreaterThan(month, minRate)
+
 
 
     @GetMapping("/multi-region")
